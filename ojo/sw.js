@@ -1,5 +1,5 @@
 // Pilas: funciona sin internet. Primero intenta la red (para ver siempre la última versión) y si no hay, usa lo guardado.
-const CACHE='pilas-ojo-1';
+const CACHE='pilas-ojo-2';
 const BASE=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./apple-touch-icon.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(BASE)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k.startsWith('pilas-ojo-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
