@@ -40,8 +40,15 @@
 --tab-on:var(--soft);
 --nav-bg:var(--primary);--nav-ink:rgba(255,255,255,.70);--nav-on-bg:rgba(255,255,255,.11);
 --splash-bg:var(--primary);--cele-bg:var(--primary);--cele-ink:var(--on-primary);
---c-in:var(--primary);--c-out:#7C8BA1;
+--c-in:var(--primary);--c-out:#7C8BA1;--prog:var(--btn-bg);
 }
+/* 0 · Señal (recomendada): marino de banco + amarillo de alerta; lo cobrado en verde */
+html[data-p="pl"]{--bg:#F6F8FB;--surface:#FFFFFF;--ink:#0F1E36;--muted:#4B5875;--line:rgba(15,30,54,.10);--line-strong:rgba(15,30,54,.24);
+--primary:#122B52;--on-primary:#FFFFFF;--accent:#FFD23F;--on-accent:#122B52;--soft:#EDF1F7;--cta-ring:inset 0 0 0 1.5px rgba(18,43,82,.30);
+--bar-fill:#22C55E;--prog:#15803D}
+html[data-p="pl"] .tip.alert{background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+html[data-p="pl"] .tip.alert .t{color:var(--muted);opacity:1}
+html[data-p="pl"] .tip.alert .ico{background:var(--bad-bg);color:var(--bad-ink)}
 /* 1 · Grand Slam */
 html[data-p="gs"]{--bg:#F8FAFC;--surface:#FFFFFF;--ink:#1E293B;--muted:#475569;--line:rgba(30,41,59,.10);--line-strong:rgba(30,41,59,.24);
 --primary:#0F3D2E;--on-primary:#F8FAFC;--accent:#D9F93B;--on-accent:#0F3D2E;--soft:#E6EFEA;--cta-ring:inset 0 0 0 1.5px rgba(15,61,46,.28)}
@@ -98,7 +105,7 @@ h2{font-family:var(--display);font-weight:var(--display-w);font-size:24px;letter
 .hero .k{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
 .hero .big{font-family:var(--display);font-weight:var(--display-w);font-size:42px;letter-spacing:-.02em;margin:4px 0 6px;line-height:1.05}
 .bar{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:12px}
-.bar i{display:block;height:100%;background:var(--btn-bg);border-radius:999px;transition:width .6s}
+.bar i{display:block;height:100%;background:var(--prog);border-radius:999px;transition:width .6s}
 .hero .bar{background:var(--bar-bg)}.hero .bar i{background:var(--bar-fill)}
 .hero .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .hero .pills span{font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;background:var(--bar-bg)}
@@ -269,7 +276,7 @@ nav.tabs button.plus{color:var(--nav-ink)}nav.tabs button.plus[aria-current="pag
 
 .pal{display:flex;align-items:center;gap:5px;padding:calc(8px + env(safe-area-inset-top)) 8px 8px;background:#FFFFFF;border-bottom:1px solid #E2E8F0;overflow-x:auto;scrollbar-width:none;font-family:'DM Sans',system-ui,sans-serif}
 .pal::-webkit-scrollbar{display:none}
-.pal button{border:0;border-radius:999px;min-height:38px;padding:0 10px 0 7px;display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12.5px;white-space:nowrap;background:#F1F5F9;color:#334155;flex:none}
+.pal button{border:0;border-radius:999px;min-height:38px;padding:0 11px;display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12.5px;white-space:nowrap;background:#F1F5F9;color:#334155;flex:none}
 .pal button[aria-pressed="true"]{background:#0F172A;color:#FFFFFF}
 .pal .sw3{display:inline-flex;border-radius:999px;overflow:hidden;width:20px;height:12px;box-shadow:0 0 0 1px rgba(15,23,42,.18)}
 .pal .sw3 i{display:block;height:100%}
@@ -1256,6 +1263,12 @@ function rechazarReporte(id){
 
 // ---------- Paletas (regla 60-30-10) ----------
 const PAL={
+pl:{nombre:'Señal',armonia:'La que te recomiendo: marino de banco + amarillo de alerta',meta:'#122B52',
+ roles:[['Fondo · 60 %','Blanco frío','#F6F8FB','Fondo claro: se lee mejor bajo el sol de la cancha.'],['Primario · 30 %','Marino banca','#122B52','Encabezado, barra de abajo y tarjeta de lo que falta por cobrar.'],['Acento · 10 %','Amarillo señal','#FFD23F','Solo acciones (Cobrar, Registrar, Guardar) y el ojo del logo.'],['Texto','Tinta marina','#0F1E36','Números y nombres con el máximo contraste.']],
+ porque:'Se ve como una app de banco (confianza al primer vistazo) y el amarillo dice «¡pilas!» justo donde hay que tocar.',
+ pares:[['Texto sobre fondo','#0F1E36','#F6F8FB'],['Botón: marino sobre amarillo','#122B52','#FFD23F'],['Amarillo sobre marino (barra de abajo)','#FFD23F','#122B52'],['Verde de lo cobrado sobre marino','#22C55E','#122B52',true]],
+ extra:['El amarillo no lo usa ningún estado: si es amarillo, se toca.','Lo cobrado se pinta en verde y avanza: da ganas de completar la barra.','El rojo queda en el número y el ojo de quien debe, nunca en tarjetas enteras: así el dueño no le huye a la pantalla.','Sin rojo ni celeste de marca: en Venezuela los dos tienen carga política.'],
+ ojo:'El amarillo casi no se separa del blanco (1,4:1): en fondos claros el botón se reconoce por su texto marino y un borde fino. Hay que probarlo al sol.'},
 gs:{nombre:'Grand Slam',armonia:'Armonía complementaria dividida',meta:'#0F3D2E',
  roles:[['Fondo · 60 %','Blanco hielo','#F8FAFC','Fondos de pantalla y tarjetas.'],['Primario · 30 %','Verde cancha profundo','#0F3D2E','Encabezado, barra de abajo y tarjeta principal.'],['Acento · 10 %','Amarillo pelota','#D9F93B','Registrar pago y botones de acción. El ojo del logo.'],['Texto','Carbón oscuro','#1E293B','Números, nombres y fechas.']],
  porque:'El verde oscuro da estabilidad de banco y tradición de tenis; el lima lleva el ojo directo al botón de pago.',
@@ -1272,7 +1285,7 @@ ft:{nombre:'Modern Fintech & Club',armonia:'Armonía análoga + neutros',meta:'#
  pares:[['Texto sobre fondo','#0F172A','#F4F6F8'],['Botón: pizarra sobre esmeralda','#0F172A','#10B981'],['Blanco sobre esmeralda (descartado)','#FFFFFF','#10B981']],
  ojo:'Con texto blanco el esmeralda da 2,5:1; con el pizarra da 7,0:1, así que los botones llevan texto oscuro. Ojo: el botón verde y el estado «Al día» verde se pueden confundir.'}
 };
-function palActual(){const p=document.documentElement.getAttribute('data-p');return PAL[p]?p:'gs';}
+function palActual(){const p=document.documentElement.getAttribute('data-p');return PAL[p]?p:'pl';}
 function lumi(h){const c=[1,3,5].map(i=>parseInt(h.substr(i,2),16)/255).map(x=>x<=.04045?x/12.92:Math.pow((x+.055)/1.055,2.4));return .2126*c[0]+.7152*c[1]+.0722*c[2];}
 function contraste(a,b){const x=lumi(a),y=lumi(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);}
 function pintarPal(){
@@ -1300,7 +1313,7 @@ function infoPal(){
 <label class="f">Colores de la marca</label><div class="card" style="padding:4px 14px">${filas}</div>
 <label class="f">Estados de cuenta (iguales en las 3)</label><div class="card" style="padding:4px 14px">${semH}<div class="muted" style="padding:8px 0 10px">El rojo queda solo para deudas: no está en el logo ni en los botones.</div></div>
 <label class="f">Contraste medido (mínimo 4,5:1 para texto)</label><div class="card" style="padding:4px 14px">${crs}</div>
-<div class="card flat"><b>Lo que hay que vigilar</b><div class="muted" style="margin-top:4px">${esc(P.ojo)}</div></div>`);
+${P.extra?`<label class="f">Por qué esta paleta</label><div class="card" style="padding:4px 14px">${P.extra.map(x=>`<div class="cr"><span>${esc(x)}</span></div>`).join('')}</div>`:''}<div class="card flat"><b>Lo que hay que vigilar</b><div class="muted" style="margin-top:4px">${esc(P.ojo)}</div></div>`);
 }
 
 // ---------- Instalación y opinión (versión web) ----------
